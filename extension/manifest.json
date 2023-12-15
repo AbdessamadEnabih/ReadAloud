@@ -1,20 +1,27 @@
 {
-    "manifest_version": 3,
-    "name": "ReadAloud",
-    "version": "1.0",
-    "description": "Enhance your reading experience with the ReadAloud extension. Transform written content into spoken words for a hands-free and immersive experience.",
-    "permissions": ["activeTab", "storage", "webNavigation"],
-    "browser_action": {
-    "default_title": "ReadAloud",
-      "default_icon": "icon.png",
-      "default_popup": "popup.html"
-    },
-    "icons": {
-        "48": "icon.png",
-        "128": "icon.png"
-    },
-    "background": {
-        "service_worker": "background.js"
+  "manifest_version": 3,
+  "name": "ReadAloud",
+  "version": "0.1.0",
+  "author": "Abdessamad Enabih",
+  "description": "Enhance your reading experience with the ReadAloud extension. Transform written content into spoken words for a hands-free and immersive experience.",
+  "permissions": ["tabs", "storage", "webNavigation"],
+  "incognito": "spanning",
+  "offline_enabled": false,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "assets/icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/contentScript.js"]
     }
+  ],
+  "icons": {
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  }
 }
-
