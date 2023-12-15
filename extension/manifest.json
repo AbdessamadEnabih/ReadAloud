@@ -4,20 +4,22 @@
   "version": "0.1.0",
   "author": "Abdessamad Enabih",
   "description": "Enhance your reading experience with the ReadAloud extension. Transform written content into spoken words for a hands-free and immersive experience.",
-  "permissions": [
-    "activeTab",
-    "storage",
-    "webNavigation"
-  ],
+  "permissions": ["tabs", "storage", "webNavigation"],
   "incognito": "spanning",
   "offline_enabled": false,
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "icon.png"
+    "default_icon": "assets/icon.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
+    }
+  ],
   "icons": {
-    "48": "icon.png",
-    "128": "icon.png"
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
   },
   "background": {
     "service_worker": "background.js"
