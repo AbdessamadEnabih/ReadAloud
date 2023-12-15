@@ -1,25 +1,18 @@
-// popup.js
+import { generateAudio } from '../utils/utils.js'
+
+const getResponse = (result) => {
+
+}
+
+
 document.addEventListener('DOMContentLoaded', function () {
-    // Add event listener to the button with the id "myButton"
-    let myButton = document.getElementById('generateBtn');
 
-    if (myButton) {
-        myButton.addEventListener('click', function () {
-            console.log('Button clicked!');
-            // Your code here...
-        });
-    } else {
-        console.error('Button not found.');
-    }
+    document.getElementById('currentTabBtn').addEventListener('click', function () {
+        getResponse(generateAudio())
+    });
 
-    let myButton2 = document.getElementById('currentTabBtn');
+    document.getElementById('generateBtn').addEventListener('click', function () {
+        getResponse(generateAudio(true, document.getElementById('URLInput').value))
+    });
 
-    if (myButton2) {
-        myButton2.addEventListener('click', function () {
-            console.log('Button2 clicked!');
-            // Your code here...
-        });
-    } else {
-        console.error('Button2 not found.');
-    }
 });
