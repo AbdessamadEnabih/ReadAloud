@@ -2,7 +2,7 @@ const getAudio = () => ('test')
 const getArticle = () => {
 
 }
-export async function generateAudio(urlGiven = false, url) {
+async function generateAudio(urlGiven = false, url) {
     if (!urlGiven) {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             console.log(tabs[0] ? tabs[0].url : 'Not found');
@@ -13,3 +13,7 @@ export async function generateAudio(urlGiven = false, url) {
 
 }
 
+
+export {
+    generateAudio
+}
