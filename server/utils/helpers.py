@@ -1,4 +1,3 @@
-import base64
 import string
 from newspaper import Article
 from pydantic import BaseModel
@@ -8,7 +7,7 @@ class ArticleResponse(BaseModel):
     url: str
     title: str
     text: str
-    audio: base64
+    audio: str
 
 
 async def generate_audio_from_article(article):
