@@ -1,5 +1,4 @@
 import base64
-import string
 from newspaper import Article as scrapArticle
 from pydantic import BaseModel
 from io import BytesIO
@@ -9,28 +8,27 @@ from gtts import gTTS
 class ArticleResponse(BaseModel):
     url: str = ""
     title: str = ""
-    summary: str = ""
-    text: str = ""
-    audio: str = ""
+    # summary: str = ""
+    audio: bytes = b""
 
 
 Article = ArticleResponse()
 
 
-async def generate_audio_from_article(article_url: str):
+async def generate_audio_from_article(article_url):
     try:
         await get_article_from_url(article_url)
         await get_audio_from_text(Article.text)
 
         serialized_article = Article.model_dump()
-        serialized_article['audio'] = base64.b64encode(serialized_article["audio"])
+        serialized_article["audio"] = base64.b64encode(serialized_article["audio"])
 
         return serialized_article
     except Exception as e:
         raise Exception(f"Error generate audio from article: {e}")
 
 
-async def get_article_from_url(url: string):
+async def get_article_from_url(url):
     """
 
     :param url:
@@ -42,8 +40,6 @@ async def get_article_from_url(url: string):
 
         Article.title = scrapped_article.title
         Article.url = scrapped_article.url
-        Article.text = scrapped_article.text
-        Article.summary = scrapped_article.summary
 
     except Exception as e:
         raise Exception(f"Error scrapping the article : {e}")

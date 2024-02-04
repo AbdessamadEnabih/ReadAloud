@@ -10,9 +10,9 @@ class ArticleRequest(BaseModel):
 
 
 @app.post('/generate_audio')
-async def generate_audio(article_request: ArticleRequest) -> JSONResponse:
+async def generate_audio(article_request: ArticleRequest):
     try:
         result = await generate_audio_from_article(article_request.url)
-        return JSONResponse(content=result, status_code=200)
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error:  {str(e)}")
