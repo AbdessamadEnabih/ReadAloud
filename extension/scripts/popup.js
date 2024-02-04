@@ -8,8 +8,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('generateBtn').addEventListener('click', async function () {
         let inputValue = document.getElementById('URLInput').value
-        if (inputValue)
-            await generateAudio(true, inputValue)
+        if (inputValue){
+            let res = await generateAudio(true, inputValue)
+
+            if(res) {
+                document.getElementById("urlpage").style.display = "none"
+                
+                document.getElementById("audio_player").style.display = "block"
+                let audioElement = document.getElementById("player")
+                Article = localStorage.getItem('Article')
+                audioElement.setAttribute('src', "data:audio/mpeg;base64,"+Article.url);
+                audioElement.load();
+            }
+        }   
         else
             displayError('Please provide the URL', 'url-input-error-container')
     });

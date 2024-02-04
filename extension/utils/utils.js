@@ -28,9 +28,6 @@ async function generateAudio(urlGiven = false, url) {
         audio: null
     }
     Article.url = urlGiven ? url : await getURL()
-
-    // localStorage.setItem('Article', JSON.stringify(Article))
-
     const options = {
         method: 'POST',
         headers: {
@@ -41,8 +38,16 @@ async function generateAudio(urlGiven = false, url) {
 
     fetch('http://localhost:8000/generate_audio', options)
         .then(response => (response.json()))
-        .then(data => console.log(data))
+        .then(data => {
+            Article.title = data.title
+            Article.audio = data.audio
+
+            localStorage.setItem('Article', JSON.stringify(Article))
+
+            return true
+        })
         .catch(error => console.error(error))
+    
 }
 
 export {
