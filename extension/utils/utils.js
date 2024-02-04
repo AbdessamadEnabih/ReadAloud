@@ -29,9 +29,20 @@ async function generateAudio(urlGiven = false, url) {
     }
     Article.url = urlGiven ? url : await getURL()
 
-    localStorage.setItem('Article', JSON.stringify(Article))
+    // localStorage.setItem('Article', JSON.stringify(Article))
 
-    console.log(retrieveDataFromLocalStorage('Article'));
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: Article.url })
+    }
+
+    fetch('http://localhost:8000/generate_audio', options)
+        .then(response => (response.json()))
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
 }
 
 export {
