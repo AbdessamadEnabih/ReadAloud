@@ -12,7 +12,6 @@ class ArticleResponse(BaseModel):
     title: str = ""
     text: str = ""
     audio: bytes =  b''
-    id: int = 0
 
 
 Article = ArticleResponse()
