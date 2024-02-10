@@ -4,6 +4,7 @@ from newspaper import Article as scrapArticle
 from pydantic import BaseModel
 from io import BytesIO
 from gtts import gTTS
+import sqlite3
 
 
 class ArticleResponse(BaseModel):
@@ -11,6 +12,7 @@ class ArticleResponse(BaseModel):
     title: str = ""
     text: str = ""
     audio: bytes =  b''
+    id: int = 0
 
 
 Article = ArticleResponse()

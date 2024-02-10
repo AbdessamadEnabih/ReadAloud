@@ -25,7 +25,7 @@ async function generateAudio(urlGiven = false, url) {
     let Article = {
         url: null,
         title: null,
-        audio: null
+        id: null
     }
     Article.url = urlGiven ? url : await getURL()
     const options = {
@@ -40,7 +40,7 @@ async function generateAudio(urlGiven = false, url) {
         .then(response => (response.json()))
         .then(data => {
             Article.title = data.title
-            Article.audio = data.audio
+            Article.id = data.id
 
             localStorage.setItem('Article', JSON.stringify(Article))
 
