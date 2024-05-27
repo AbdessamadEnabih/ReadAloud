@@ -22,7 +22,7 @@
     <div class="text-center">
       <h1 class="image-text">ReadAloud</h1>
       <div class="text-danger" id="default-error-container"></div>
-      <div style="margin-top: 8%">
+      <div id="urlpage" style="margin-top: 8%">
         <button id="currentTabBtn" class="btn btn-primary">Current Tab</button>
 
         <h6 class="lineStyle">OR</h6>
@@ -44,6 +44,15 @@
             Generate
           </button>
         </div>
+      </div>
+      <div id="audio_player" style="display: none;">
+        <audio controls>
+          <source
+            id="player"
+            src=""
+            type="audio/mpeg"
+          />
+        </audio>
       </div>
     </div>
   </body>
